@@ -42,7 +42,7 @@
                     <div class="text">
                         <h2>PyCon Pakistan 2019</h2>
                         <h4>Saturday, 12th October 2019</h4>
-                        <a class="btn btn-lg btn-common" href="#">Tickets Available Soon</a>
+                        <a class="btn btn-lg btn-common" href="http://happening.pk/conference/pycon-pakistan-2019/buy-tickets">Buy Tickets</a>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12 wow fadeInRight">
@@ -93,9 +93,9 @@
                     <div class="tab-block last-block wow fadeInDown">
                         <div class="icon"><i class="icon-wallet"></i></div>
                         <div class="desc left">
-                            <h4><a href="/buy-tickets">Tickets</a></h4>
+                            <h4><a href="http://happening.pk/conference/pycon-pakistan-2019/buy-tickets">Tickets</a></h4>
                             <p>
-                                <!-- {% total_passes_booked as passes %}{{ passes }} --> Available soon
+                                <!-- {%total_passes_booked as passes %}{{ passes }} --> Available now 
                             </p>
                         </div>
                     </div>
@@ -229,8 +229,14 @@
                     <p class="section-subcontent wow fadeInUp">Sponsors are what will make this conference possible.</p>
                 </div>
                 {% featured_sponsors 10 as sponsors %}
-                {% for sponsor in sponsors reversed%}
-                    {% include 'generic/sponsor.html' with sponsor=sponsor MEDIA_URL=MEDIA_URL only %}
+                {% for sponsor_type, sponsors_list in sponsors.items %}
+                    {% if sponsor_type %}
+                        <h3>{{ sponsor_type }}</h3>
+                    {% endif %}
+
+                    {% for sponsor in sponsors_list %}
+                        {% include 'generic/sponsor.html' with sponsor=sponsor MEDIA_URL=MEDIA_URL only %}
+                    {% endfor %}
                 {% endfor %}
             </div>
             <p class="text-center">Interested in sponsoring PyCon Pakistan? Find more about our
